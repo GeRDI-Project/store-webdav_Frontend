@@ -1,7 +1,9 @@
 <template>
   <b-list-group-item>
     {{ title }}
-    <b-progress :value="realProgress" :max="100" show-progress :variant="variant" :animated="progress < 100" :label="(progress == -1) ? 'Unknown Size' : progress">
+    <b-progress :variant="variant" :animated="progress < 100 && progress >= -1" >
+      <b-progress-bar :value="realProgress" :label="translatedLabel">
+      </b-progress-bar>
     </b-progress>
   </b-list-group-item>
 </template>
@@ -11,22 +13,26 @@ export default {
   name: 'DownloadItem',
   props: ['title', 'progress'],
   data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  created() {
-    console.log("Overview")
+    return {}
   },
   computed: {
     variant: function() {
-      console.log(this.progress)
       if (this.progress == -1) return 'warning'
+      if (this.progress == -2) return 'danger'
       if (this.progress < 100) return 'info'
       return 'success'
     },
     realProgress: function() {
-      return (this.progress == -1) ? 100 : this.progress
+      return (this.progress == -1 || this.progress == -2) ? 100 : this.progress
+    },
+    translatedLabel: function() {
+      if (this.progress == -1) {
+        return 'Unknown Size'
+      } else if (this.progress == -2) {
+        return 'Error'
+      } else {
+        return this.progress.toString()
+      }
     }
   }
 }

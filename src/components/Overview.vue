@@ -14,7 +14,7 @@
       </div>
       <b-btn class="mt-3" variant="outline-danger" block @click="back">Go back.</b-btn>
     </b-modal>
-    <b-modal ref="finishedStore" title="Store process finished" ok-only="true" ok-title="Go back to Bookmark" @ok="ok">
+    <b-modal ref="finishedStore" title="Store process finished" :ok-only="true" ok-title="Go back to Bookmark" @ok="ok">
       Following data sets were stored on the WebDAV storage:
       <ul>
         <li v-for="data in progressData">{{ data.fileName.split('/').pop() }}</li>
@@ -39,10 +39,7 @@ export default {
     let url = '/api/v1/store/copy/' + id
     if(this.$route.query.dir) url += ('?dir=' + this.$route.query.dir)
     axios.get(url)
-      .then(function(response) {
-      })
       .catch(function(error) {
-        //self.errMsg = error.response;
         console.error(error)
       });
     this.interval = window.setInterval(this.load, 1000)
