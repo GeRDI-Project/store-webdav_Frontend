@@ -19,6 +19,7 @@ export default {
     variant: function() {
       if (this.progress == -1) return 'warning'
       if (this.progress == -2) return 'danger'
+      if (this.progress == 100) return 'success'
       if (this.progress < 100) return 'info'
       return 'success'
     },
