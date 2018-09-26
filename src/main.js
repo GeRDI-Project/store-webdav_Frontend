@@ -8,7 +8,7 @@ import DownloadItem from './components/DownloadItem'
 import Files from './components/Files'
 import File from './components/File'
 //import router from './router'
-import staticUI from 'static-ui'
+import sharedUI from 'shared-ui'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFolder, faFile, faSpinner, faFolderPlus, faFileUpload } from '@fortawesome/free-solid-svg-icons'
@@ -27,7 +27,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
-Vue.use(staticUI)
+Vue.use(sharedUI)
 Vue.use(BootstrapVue)
 
 Vue.component('app', App)

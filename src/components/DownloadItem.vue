@@ -1,7 +1,7 @@
 <template>
   <b-list-group-item>
     {{ title }}
-    <b-progress :variant="variant" :animated="progress < 100 && progress >= -1" >
+    <b-progress :variant="variant" :animated="state == 'RUNNING' || state == 'PENDING' || state == 'UNKNOWN_SIZE'" >
       <b-progress-bar :value="realProgress" :label="translatedLabel">
       </b-progress-bar>
     </b-progress>
@@ -11,25 +11,25 @@
 <script>
 export default {
   name: 'DownloadItem',
-  props: ['title', 'progress'],
+  props: ['title', 'progress', 'state'],
   data () {
     return {}
   },
   computed: {
     variant: function() {
-      if (this.progress == -1) return 'warning'
-      if (this.progress == -2) return 'danger'
-      if (this.progress == 100) return 'success'
-      if (this.progress < 100) return 'info'
+      if (this.state == 'UNKNOWN_SIZE') return 'warning'
+      if (this.state == 'ERROR') return 'danger'
+      if (this.state == 'FINISHED') return 'success'
+      if (this.state == 'RUNNING' || this.state == 'PENDING') return 'info'
       return 'success'
     },
     realProgress: function() {
-      return (this.progress == -1 || this.progress == -2) ? 100 : this.progress
+      return (this.state == 'UNKNOWN_SIZE' || this.state == 'ERROR') ? 100 : this.progress
     },
     translatedLabel: function() {
-      if (this.progress == -1) {
+      if (this.state == 'UNKNOWN_SIZE') {
         return 'Unknown Size'
-      } else if (this.progress == -2) {
+      } else if (this.state == 'ERROR') {
         return 'Error'
       } else {
         return this.progress.toString()

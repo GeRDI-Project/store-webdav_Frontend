@@ -4,7 +4,7 @@
     <div class="progress-display">
       <h4>Copying Datasets...</h4>
       <b-list-group>
-        <download-item v-for="data in progressData" :title="data.fileName" :progress="data.progressInPercent" :key="data.fileName"/>
+        <download-item v-for="data in progressData" :title="data.fileName" :progress="data.progressInPercent" :state="data.state" :key="data.fileName"/>
       </b-list-group>
     </div>
     <b-modal ref="errStore" hide-footer title="Error">
@@ -54,7 +54,7 @@ export default {
       axios.get('/api/v1/store/progress/' + id)
       .then(function(response) {
         self.progressData = response.data
-        if (response.data.reduce((a, b) => a && (b.progressInPercent == 100) ,true) == true) {
+        if (response.data.reduce((a, b) => a && (b.state == 'FINISHED' || b.state == 'ERROR') ,true) == true) {
           self.stopInterval()
           self.$refs.finishedStore.show()
         }
