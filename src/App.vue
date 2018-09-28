@@ -9,17 +9,11 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
 </script>
 
-<style>
+<style lang="scss">
+/* @import './styles/gerdi.scss'; */
+@import '~bootstrap/scss/bootstrap';
 
 #app {
   -webkit-font-smoothing: antialiased;
@@ -29,7 +23,5 @@ export default {
   flex-direction: column;
 }
 
-.content {
-  flex: 1;
-}
+.content { flex: 1; }
 </style>

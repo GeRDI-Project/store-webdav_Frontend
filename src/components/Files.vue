@@ -29,6 +29,9 @@
         </div>
       </div>
     </div>
+    <b-modal ref="failedLogin" title="Failed to log in" :ok-only="true" ok-title="Go back to Bookmark" @ok="ok">
+      We weren't able to log you in. Please retry later.
+    </b-modal>
   </div>
 </template>
 
@@ -43,7 +46,8 @@ export default {
       loading: true,
       error: false,
       windowRef: {},
-      overlay: false
+      overlay: false,
+      retries: 0
     }
   },
   created() {
@@ -95,9 +99,14 @@ export default {
       });
     },
     login() {
-      let url = '/api/v1/store/login/init.html?sessionId=' + this.$route.params.sessionId
-      this.windowUrl = url
-      this.PopupCenter(url, 'Log in into LRZ Sync&Share', 300, 350)
+      if (this.retries <= 3) {
+        let url = '/api/v1/store/login/init.html?sessionId=' + this.$route.params.sessionId
+        this.windowUrl = url
+        this.PopupCenter(url, 'Log in into LRZ Sync&Share', 300, 350)
+        this.retries++;
+      } else {
+        this.$refs.failedLogin.show()
+      }
     },
     PopupCenter(url, title, w, h) {
       // Fixes dual-screen position                         Most browsers      Firefox
@@ -121,6 +130,9 @@ export default {
             self.load()
         }
       }, 1000);
+    },
+    ok() {
+      window.location='/bookmark'
     }
   }
 }

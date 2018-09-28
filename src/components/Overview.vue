@@ -74,7 +74,7 @@ export default {
       window.clearInterval(this.interval)
     },
     ok() {
-      location.href='/bookmark'
+      window.location='/bookmark'
     }
   }
 }

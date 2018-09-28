@@ -5,9 +5,6 @@ import Router from 'vue-router'
 import Overview from "../components/Overview"
 import Files from "../components/Files"
 
-// Statical UI Elements Components
-import HelloWorld from '../components/HelloWorld'
-
 Vue.use(Router)
 
 export default new Router({
@@ -16,11 +13,6 @@ export default new Router({
     path: '/store/overview/:sessionId',
     name: 'overview',
     component: Overview
-  },
-  {
-    path: '/',
-    name: 'start',
-    component: HelloWorld
   },
   {
     path: '/store/files/:sessionId',
