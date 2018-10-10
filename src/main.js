@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import NavMenu from './components/NavMenu'
 import BootstrapVue from 'bootstrap-vue'
 import Overview from './components/Overview'
 import DownloadItem from './components/DownloadItem'
@@ -31,7 +30,6 @@ Vue.use(sharedUI)
 Vue.use(BootstrapVue)
 
 Vue.component('app', App)
-Vue.component('nav-menu', NavMenu)
 Vue.component('overview', Overview)
 Vue.component('download-item', DownloadItem)
 Vue.component('files', Files)
