@@ -10,12 +10,12 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [{
-    path: '/store/overview/:sessionId',
+    path: '/store/webdav-store/overview/:sessionId',
     name: 'overview',
     component: Overview
   },
   {
-    path: '/store/files/:sessionId',
+    path: '/store/webdav-store/files/:sessionId',
     name: 'files',
     component: Files
   }

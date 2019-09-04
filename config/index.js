@@ -50,7 +50,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'store/static',
+    assetsSubDirectory: 'store/webdav-store/static',
     assetsPublicPath: '/',
 
     /**
